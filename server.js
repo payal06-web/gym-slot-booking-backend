@@ -5,8 +5,16 @@ import dotenv from "dotenv"
 import authRoutes from "./routes/authRoutes.js";
 import slotRoutes from "./routes/slotRoutes.js";
 import bookingRoutes from "./routes/bookingRoutes.js";
+import path from "path";
 dotenv.config()
+
 const app = express();
+
+app.use(express.static("dist"));
+
+app.get("*new", (req, res) => {
+  res.sendFile(path.resolve("dist", "index.html"));
+});
 
 app.use(express.json());
 
