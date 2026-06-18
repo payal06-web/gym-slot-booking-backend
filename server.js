@@ -15,6 +15,11 @@ app.get("/",(req, res)=>{
     return res.send("backend is running")
 })
 
+app.use(cors({
+  origin: "gym-slot-booking-frontend.vercel.app",
+  credentials: true
+}));
+
 let isConnected = false;
 async function connectToMongoDb(){
     try{
