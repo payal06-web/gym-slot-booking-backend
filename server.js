@@ -11,40 +11,23 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+mongoose.connect(process.env.MONGO_URI);
 app.use(cors({
   origin: "https://gym-slot-booking-frontend.vercel.app",
   credentials: true
 }));
 
-
-app.get("/",(req, res)=>{
-    return res.send("backend is running")
-})
-
-let isConnected = false;
-async function connectToMongoDb(){
-    try{
-        await mongoose.connect(process.env.MONGO_URI,{
-            useNewUrlParser: true,
-            useUnifielsTopology: true
-        });
-        isConnected = true;
-        console.log("Connected to MongoDB");
-    }catch(error){
-        console.log('Error connecting to MongoDB', error)
-    }
-}
-
-app.use((req, res, next)=>{
-    if(!isConnected){
-        connectToMongoDb();
-    }
-    next();
-})
-
 app.use("/api/auth", authRoutes);
 app.use("/api/slots", slotRoutes);
 app.use("/api/bookings", bookingRoutes);
 
-const PORT = process.env.PORT
-app.listen(() => console.log("Server running"));
+app.get("/",(req, res)=>{
+   return res.send("backend is running")
+})
+
+
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
