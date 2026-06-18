@@ -17,5 +17,9 @@ app.use("/api/auth", authRoutes);
 app.use("/api/slots", slotRoutes);
 app.use("/api/bookings", bookingRoutes);
 
-const PORT = process.env.PORT || 5000
-app.listen(5000, () => console.log("Server running"));
+app.get("/",(req, res)=>{
+   return res.send("backend is running")
+})
+
+const PORT = process.env.PORT
+app.listen(() => console.log("Server running"));
