@@ -16,7 +16,7 @@ app.get("/",(req, res)=>{
 })
 
 app.use(cors({
-  origin: "gym-slot-booking-frontend.vercel.app",
+  origin: "https://gym-slot-booking-frontend.vercel.app",
   credentials: true
 }));
 
