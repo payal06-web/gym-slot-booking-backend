@@ -8,12 +8,15 @@ import bookingRoutes from "./routes/bookingRoutes.js";
 dotenv.config()
 const app = express();
 
-app.use(cors());
 app.use(express.json());
 
 mongoose.connect(process.env.MONGO_URI);
+
 app.use(cors({
-  origin: "https://gym-slot-booking-frontend.vercel.app",
+  origin: [
+    "http://localhost:5173",
+    "https://gym-slot-booking-frontend.vercel.app"
+  ],
   credentials: true
 }));
 
