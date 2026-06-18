@@ -11,14 +11,15 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get("/",(req, res)=>{
-    return res.send("backend is running")
-})
-
 app.use(cors({
   origin: "https://gym-slot-booking-frontend.vercel.app",
   credentials: true
 }));
+
+
+app.get("/",(req, res)=>{
+    return res.send("backend is running")
+})
 
 let isConnected = false;
 async function connectToMongoDb(){
@@ -34,7 +35,7 @@ async function connectToMongoDb(){
     }
 }
 
- app.use((req, res, next)=>{
+app.use((req, res, next)=>{
     if(!isConnected){
         connectToMongoDb();
     }
@@ -45,7 +46,5 @@ app.use("/api/auth", authRoutes);
 app.use("/api/slots", slotRoutes);
 app.use("/api/bookings", bookingRoutes);
 
-// const PORT = process.env.PORT
-// app.listen(() => console.log("Server running"));
-
-export default app
+const PORT = process.env.PORT
+app.listen(() => console.log("Server running"));
