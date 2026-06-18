@@ -17,7 +17,7 @@ const createAdmin = async () => {
     role: "admin"
   });
 
-  console.log("Admin Created 🔥");
+  console.log("Admin Created ");
   process.exit();
 };
 

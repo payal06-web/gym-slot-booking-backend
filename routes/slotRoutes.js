@@ -22,7 +22,7 @@ router.delete("/:id", protect, adminOnly, async(req,res)=>{
 router.put("/:id", protect, adminOnly, async(req,res)=>{
     const slot = await Slot.findByIdAndUpdate(
         req.params.id,
-        rea.body,
+        req.body,
         {new :true}
     );
     res.json(slot);
