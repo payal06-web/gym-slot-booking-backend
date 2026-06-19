@@ -24,7 +24,6 @@ export const getCrowd = async (req, res) => {
 
     const slot = await Slot.findById(slotId);
 
-    // ✅ IMPORTANT FIX
     if (!slot) {
       return res.status(404).json({
         msg: "Slot not found",
