@@ -12,7 +12,7 @@ const createAdmin = async () => {
 
   await User.create({
     name: "Pihu",
-    email: "pihu@p.com",
+    email: "pihuu@p.com",
     password: hashedPassword,
     role: "admin"
   });
